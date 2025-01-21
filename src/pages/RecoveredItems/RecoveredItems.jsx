@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const RecoveredItems = () => {
     const { user } = useAuth();
@@ -27,6 +28,9 @@ const RecoveredItems = () => {
 
     return (
         <div className="container mx-auto p-4">
+            <Helmet>
+                <title>Whereisit || Recovered Items</title>
+            </Helmet>
             <h1 className="text-xl font-bold mb-4">Recovered Items</h1>
             {recoveredItems.length === 0 ? (
                 <p>No recovered items found for your account.</p>
@@ -35,7 +39,7 @@ const RecoveredItems = () => {
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border border-gray-300 px-4 py-2">Recovered Location</th>
-                            
+
                             <th className="border border-gray-300 px-4 py-2">Recovered Date</th>
                             <th className="border border-gray-300 px-4 py-2">Recovered By</th>
                             <th className="border border-gray-300 px-4 py-2">Created At</th>
@@ -45,7 +49,7 @@ const RecoveredItems = () => {
                         {recoveredItems.map((item) => (
                             <tr key={item._id} className="hover:bg-gray-100">
                                 <td className="border border-gray-300 px-4 py-2">{item.recoveredLocation}</td>
-                                
+
                                 <td className="border border-gray-300 px-4 py-2">
                                     {new Date(item.recoveredDate).toLocaleString()}
                                 </td>

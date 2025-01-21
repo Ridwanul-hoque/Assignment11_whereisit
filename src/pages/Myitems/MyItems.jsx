@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Helmet } from 'react-helmet-async';
 
 
 const MyItems = () => {
@@ -129,6 +130,9 @@ const MyItems = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Whereisit || My Items</title>
+            </Helmet>
             <h1>My Items</h1>
             {error && <p className="text-red-500">{error}</p>}
             <table className="table-auto border-collapse w-full">
@@ -271,7 +275,7 @@ const MyItems = () => {
                                     required
                                 />
                             </div>
-                            
+
                             <div className="flex justify-end">
                                 <button
                                     type="button"

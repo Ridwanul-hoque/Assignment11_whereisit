@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddItems = () => {
     const { user } = useAuth()
@@ -56,6 +57,9 @@ const AddItems = () => {
     }
     return (
         <div className='bg-[#C57478] p-4 rounded-lg mb-6'>
+            <Helmet>
+                <title>Whereisit || Add Items</title>
+            </Helmet>
             <Zoom>
                 <h2 className='text-2xl font-extrabold flex justify-center'>Add Items</h2>
             </Zoom>
