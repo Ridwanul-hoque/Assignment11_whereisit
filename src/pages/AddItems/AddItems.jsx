@@ -30,7 +30,7 @@ const AddItems = () => {
 
 
 
-        fetch('http://localhost:5000/non-recovered/full', {
+        fetch('http://localhost:5000/non-recovered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -87,7 +87,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Location</span>
                             </label>
-                            <input type="text" name='category' placeholder="Address" className="input input-bordered" required />
+                            <input type="text" name='location' placeholder="Address" className="input input-bordered" required />
                         </div>
 
 
@@ -108,6 +108,9 @@ const AddItems = () => {
                                     dateFormat="yyyy-MM-dd"
                                     placeholderText="Select a date"
                                     className="input input-bordered"
+                                    popperPlacement="bottom-start"
+                                    popperClassName="z-50"
+                                    portalId="root-portal"
                                     required
                                 />
                             </div>
@@ -148,7 +151,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Description</span>
                             </label>
-                            <input type="text" name='Description' placeholder="Description of the Item" className="input input-bordered" required />
+                            <input type="text" name='description' placeholder="Description of the Item" className="input input-bordered" required />
                         </div>
 
                     </div>

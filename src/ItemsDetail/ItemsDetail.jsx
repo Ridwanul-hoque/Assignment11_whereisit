@@ -11,6 +11,7 @@ const ItemsDetail = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [recoveredDate, setRecoveredDate] = useState(new Date());
     const [recoveredLocation, setRecoveredLocation] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const { _id, postType, thumbnail, title, description, category, location, date, name, email } = items;
 
@@ -48,6 +49,7 @@ const ItemsDetail = () => {
             if (response.ok) {
                 alert('Recovery data submitted successfully!');
                 setIsModalOpen(false);
+                setIsSubmitted(true)
             } else {
                 alert('Failed to submit recovery data.');
             }
@@ -87,17 +89,25 @@ const ItemsDetail = () => {
                     {postType === 'Lost' && (
                         <button
                             onClick={handleOpenModal}
-                            className="px-6 py-2 mt-4 sm:mt-0 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-300"
+                            disabled={isSubmitted}
+                            className={`px-6 py-2 mt-4 sm:mt-0 rounded-lg shadow-md transition duration-300 ${isSubmitted
+                                    ? 'bg-gray-400 cursor-not-allowed'
+                                    : 'bg-green-500 text-white hover:bg-green-600'
+                                }`}
                         >
-                            Found This!
+                            {isSubmitted ? 'Already Recovered' : 'Found This!'}
                         </button>
                     )}
                     {postType === 'Found' && (
                         <button
                             onClick={handleOpenModal}
-                            className="px-6 py-2 mt-4 sm:mt-0 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition duration-300"
+                            disabled={isSubmitted}
+                            className={`px-6 py-2 mt-4 sm:mt-0 rounded-lg shadow-md transition duration-300 ${isSubmitted
+                                    ? 'bg-gray-400 cursor-not-allowed'
+                                    : 'bg-yellow-500 text-white hover:bg-yellow-600'
+                                }`}
                         >
-                            This is Mine!
+                            {isSubmitted ? 'Already Recovered' : 'This is Mine!'}
                         </button>
                     )}
                 </div>

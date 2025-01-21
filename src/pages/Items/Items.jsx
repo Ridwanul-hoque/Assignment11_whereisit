@@ -5,7 +5,7 @@ const Items = () => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/non-recovered/full')
+        fetch('http://localhost:5000/non-recovered')
             .then(res => res.json())
             .then(data => {
                 setItems(data)

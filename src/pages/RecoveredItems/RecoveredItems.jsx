@@ -35,6 +35,7 @@ const RecoveredItems = () => {
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border border-gray-300 px-4 py-2">Recovered Location</th>
+                            
                             <th className="border border-gray-300 px-4 py-2">Recovered Date</th>
                             <th className="border border-gray-300 px-4 py-2">Recovered By</th>
                             <th className="border border-gray-300 px-4 py-2">Created At</th>
@@ -44,6 +45,7 @@ const RecoveredItems = () => {
                         {recoveredItems.map((item) => (
                             <tr key={item._id} className="hover:bg-gray-100">
                                 <td className="border border-gray-300 px-4 py-2">{item.recoveredLocation}</td>
+                                
                                 <td className="border border-gray-300 px-4 py-2">
                                     {new Date(item.recoveredDate).toLocaleString()}
                                 </td>

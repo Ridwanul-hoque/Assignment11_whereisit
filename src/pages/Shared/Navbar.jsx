@@ -43,7 +43,7 @@ const Navbar = () => {
                                     <Link to='/recoverItems'>Recovered Items</Link>
                                 </li>
                                 <li>
-                                    <a>My Items</a>
+                                    <Link to='/myItems'>My Items</Link>
                                 </li>
                             </ul>
                         </div>
