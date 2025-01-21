@@ -1,5 +1,6 @@
 import Lottie from 'lottie-react';
 import React, { useContext } from 'react';
+import { updateProfile } from "firebase/auth";
 // import registerLottieData from '../../assets/lottie/register.json'
 
 import SocialLogin from '../Shared/SocialLogin';
@@ -34,13 +35,14 @@ const Register = () => {
         // pass error
         createUser(email, password)
             .then(result => {
-                updateProfile(result.user, {
+                const user = result.user;
+                updateProfile(user, {
                     displayName: name,
                     photoURL: PhotoURL
                 })
                     .then(() => {
                         toast.success('Registration successful!');
-                        console.log(result.user);
+                        console.log('updated Profile', user);
                         form.reset();
                         navigate(from);
                     })
@@ -68,7 +70,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='Name' placeholder="Name" className="input input-bordered" required />
+                            <input type="text" name='name' placeholder="Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

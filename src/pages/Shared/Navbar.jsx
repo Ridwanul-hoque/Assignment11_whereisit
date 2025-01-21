@@ -26,7 +26,7 @@ const Navbar = () => {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src={user.photoURL} alt={user.displayName || 'User'} />
+                                    <img src={user.photoURL} alt={user?.displayName || 'User'} />
                                 </div>
                             </div>
                             <ul
@@ -47,7 +47,7 @@ const Navbar = () => {
                                 </li>
                             </ul>
                         </div>
-                        <button onClick={handleLogout} className="btn btn-error ml-4">
+                        <button onClick={handleLogout} className="btn bg-[#C57478]  ml-4">
                             Logout
                         </button>
                     </>
