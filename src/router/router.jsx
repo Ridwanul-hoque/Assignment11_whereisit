@@ -8,6 +8,10 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Items from "../pages/Items/Items";
 import ItemsDetail from "../ItemsDetail/ItemsDetail";
+import AddItems from "../pages/AddItems/AddItems";
+import MyItems from "../pages/Myitems/MyItems";
+import RecoveredItems from "../pages/RecoveredItems/RecoveredItems";
+
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,18 @@ const router = createBrowserRouter([
         path: '/non-recovered/:id',
         element: <ItemsDetail></ItemsDetail>,
         loader: ({ params }) => fetch(`http://localhost:5000/non-recovered/${params.id}`)
+      },
+      {
+        path: 'addItems',
+        element: <AddItems></AddItems>
+      },
+      {
+        path: 'recoverItems',
+        element: <RecoveredItems></RecoveredItems>
+      },
+      {
+        path: 'myItems',
+        element: <MyItems></MyItems>
       },
       {
         path: 'seemore',

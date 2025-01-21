@@ -37,10 +37,10 @@ const Navbar = () => {
                                     <Link to='/'>Home</Link>
                                 </li>
                                 <li>
-                                    <a>ADD Lost & Found Items</a>
+                                    <Link to='/addItems'>ADD Lost & Found Items</Link>
                                 </li>
                                 <li>
-                                    <a>Recovered Items</a>
+                                    <Link to='/recoverItems'>Recovered Items</Link>
                                 </li>
                                 <li>
                                     <a>My Items</a>
