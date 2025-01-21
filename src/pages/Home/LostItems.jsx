@@ -5,7 +5,7 @@ const LostItems = () => {
     const [lostitems, setLostItems] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/non-recovered/lost')
+        fetch('https://whereisit-server-side.vercel.app/non-recovered/lost')
             .then(res => res.json())
             .then(data => {
                 setLostItems(data)

@@ -39,7 +39,7 @@ const ItemsDetail = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/recovered', {
+            const response = await fetch('https://whereisit-server-side.vercel.app/recovered', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -5,7 +5,7 @@
 WhereIsIt is a Lost and Found platform designed to help individuals recover their lost items by connecting them with those who may have found them. This web application allows users to report lost items, browse found items, and interact to recover their belongings. It is built with React for the front-end and Node.js for the back-end, offering a full-stack solution with a MongoDB database.
 
 ## Live URL
-[Insert Live Link Here]
+[https://whereisit-21db1.web.app/]
 
 ## Key Features
 - **User Authentication**: Login/Registration via email & password, or Google/GitHub login.
@@ -32,8 +32,6 @@ To get started with this project locally, follow these steps:
 - **Node.js** (v14 or higher)
 - **npm** (or **yarn**)
 
-### Client-Side Setup (React)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/whereisit.git
+
+

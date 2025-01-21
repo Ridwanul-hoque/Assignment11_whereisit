@@ -22,7 +22,7 @@ const AddLostFound = () => {
         // console.log(newBook);
 
 
-        fetch('http://localhost:5000/non-recovered/full', {
+        fetch('https://whereisit-server-side.vercel.app/non-recovered/full', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

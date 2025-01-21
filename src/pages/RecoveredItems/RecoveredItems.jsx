@@ -9,7 +9,7 @@ const RecoveredItems = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/recovered?email=${user.email}`)
+            fetch(`https://whereisit-server-side.vercel.app/recovered?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setRecoveredItems(data);

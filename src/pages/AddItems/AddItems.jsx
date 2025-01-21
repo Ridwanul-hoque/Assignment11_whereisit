@@ -31,7 +31,7 @@ const AddItems = () => {
 
 
 
-        fetch('http://localhost:5000/non-recovered', {
+        fetch('https://whereisit-server-side.vercel.app/non-recovered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

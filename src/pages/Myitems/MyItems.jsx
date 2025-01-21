@@ -24,7 +24,7 @@ const MyItems = () => {
 
         console.log('Fetching items for:', user.email);
 
-        // fetch(`http://localhost:5000/non-recovered/full?email=${user.email}`)
+        // fetch(`https://whereisit-server-side.vercel.app/non-recovered/full?email=${user.email}`)
         //     .then((res) => {
         //         if (!res.ok) {
         //             throw new Error('Failed to fetch items');
@@ -36,7 +36,7 @@ const MyItems = () => {
         //         console.error(err);
         //         setError('Failed to load items. Please try again later.');
         //     });
-        fetch(`http://localhost:5000/non-recovered?email=${user.email}`)
+        fetch(`https://whereisit-server-side.vercel.app/non-recovered?email=${user.email}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Failed to fetch items');
@@ -60,7 +60,7 @@ const MyItems = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/non-recovered/${id}`, {
+                fetch(`https://whereisit-server-side.vercel.app/non-recovered/${id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => {
@@ -99,7 +99,7 @@ const MyItems = () => {
             email: user.email,
         };
 
-        fetch(`http://localhost:5000/non-recovered/${editingItem._id}`, {
+        fetch(`https://whereisit-server-side.vercel.app/non-recovered/${editingItem._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

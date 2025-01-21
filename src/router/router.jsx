@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/non-recovered/:id',
         element: <PrivateRoute><ItemsDetail></ItemsDetail></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/non-recovered/${params.id}`)
+        loader: ({ params }) => fetch(`https://whereisit-server-side.vercel.app/non-recovered/${params.id}`)
       },
       {
         path: 'addItems',

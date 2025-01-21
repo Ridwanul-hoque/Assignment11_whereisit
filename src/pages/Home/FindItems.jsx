@@ -5,7 +5,7 @@ const FindItems = () => {
     const [finditems, setFindItems] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/non-recovered/found')
+        fetch('https://whereisit-server-side.vercel.app/non-recovered/found')
             .then(res => res.json())
             .then(data => {
                 setFindItems(data)

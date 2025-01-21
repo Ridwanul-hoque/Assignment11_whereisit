@@ -6,7 +6,7 @@ const Items = () => {
     const [searchTerm, setSearchTerm] = useState(""); // State for the search term
 
     useEffect(() => {
-        fetch('http://localhost:5000/non-recovered/allItems')
+        fetch('https://whereisit-server-side.vercel.app/non-recovered/allItems')
             .then(res => res.json())
             .then(data => {
                 setItems(data);
