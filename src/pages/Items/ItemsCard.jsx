@@ -37,7 +37,7 @@ const ItemsCard = ({ item }) => {
                         Date: {date}
                     </div>
                     <div className="flex justify-end">
-                        <Link to={`/non-recovered/${_id}`}><button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+                        <Link to={`/non-recovered/${_id}`}><button className="px-4 py-2 bg-[#C57478] text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
                             Details
                         </button></Link>
                     </div>

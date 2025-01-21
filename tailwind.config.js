@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      cursive: ["Cedarville Cursive", "serif"], // Add your font here
+  },
   },
   plugins: [
     daisyui,

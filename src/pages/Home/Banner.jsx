@@ -36,7 +36,7 @@ const Banner = () => {
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
                                 First ever Website To Help you Get your Things back to you
                             </p>
-                            <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
+                            <div className="bg-[#C57478] p-4 rounded-lg text-white animate__animated animate__zoomIn">
                                 <Link to='/seemore'><button> See More</button></Link>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ const Banner = () => {
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
                                 Found Someone Else Belonging Put it in the Website to let owner find out
                             </p>
-                            <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
+                            <div className="bg-[#C57478] p-4 rounded-lg text-white animate__animated animate__zoomIn">
                                 <Link to='/addItems'><button> Add Items </button></Link>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const Banner = () => {
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
                                 Together, we can transform the lost into found and create meaningful connections!
                             </p>
-                            <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
+                            <div className="bg-[#C57478] p-4 rounded-lg text-white animate__animated animate__zoomIn">
                                 <Link to='/register'><button> Join the Community </button></Link>
                             </div>
                         </div>

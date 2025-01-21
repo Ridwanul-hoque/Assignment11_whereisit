@@ -20,6 +20,13 @@ const Items = () => {
 
     return (
         <div>
+
+
+            <div className="flex justify-center items-center my-8">
+                <h1 className="text-4xl font-bold text-[#C57478] text-center uppercase tracking-wide fade-in">
+                    Lost And Found Items
+                </h1>
+            </div>
             {/* Search bar */}
             <div className="mb-5">
                 <input
@@ -30,6 +37,7 @@ const Items = () => {
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
             </div>
+
 
             {/* Items grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
