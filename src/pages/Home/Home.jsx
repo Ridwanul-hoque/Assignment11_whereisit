@@ -6,9 +6,12 @@ import LostItems from './LostItems';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+    
+    
     return (
         <div>
             <Banner></Banner>
+            
             <h1>All Items</h1>
             <Allitems></Allitems>
             <h1>Found Items</h1>

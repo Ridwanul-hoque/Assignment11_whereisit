@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -47,14 +48,29 @@ const ItemsDetail = () => {
             });
 
             if (response.ok) {
-                alert('Recovery data submitted successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Recovery data submitted successfully!',
+                    confirmButtonText: 'OK',
+                });;
                 setIsModalOpen(false);
                 setIsSubmitted(true)
             } else {
-                alert('Failed to submit recovery data.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to submit recovery data.',
+                    confirmButtonText: 'OK',
+                });;
             }
         } catch (error) {
-            console.error('Error submitting recovery data:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'An error occurred while submitting the data. Please try again later.',
+                confirmButtonText: 'OK',
+            });;
         }
     };
 
@@ -79,7 +95,7 @@ const ItemsDetail = () => {
                     <p>Email: <span className="font-medium text-gray-700">{email}</span></p>
                     <p>Location: <span className="font-medium text-gray-700">{location}</span></p>
                 </div>
-                <div className="border-t-2 border-dashed mb-6"></div>
+                <div className="border-t-2 border-dashed mb-6">{description}</div>
                 <div className="card-actions flex flex-wrap items-center justify-between">
                     <div className="badge badge-outline px-4 py-1 text-sm font-medium capitalize bg-gray-100 text-gray-700">
                         {postType}
@@ -91,8 +107,8 @@ const ItemsDetail = () => {
                             onClick={handleOpenModal}
                             disabled={isSubmitted}
                             className={`px-6 py-2 mt-4 sm:mt-0 rounded-lg shadow-md transition duration-300 ${isSubmitted
-                                    ? 'bg-gray-400 cursor-not-allowed'
-                                    : 'bg-green-500 text-white hover:bg-green-600'
+                                ? 'bg-gray-400 cursor-not-allowed'
+                                : 'bg-green-500 text-white hover:bg-green-600'
                                 }`}
                         >
                             {isSubmitted ? 'Already Recovered' : 'Found This!'}
@@ -103,8 +119,8 @@ const ItemsDetail = () => {
                             onClick={handleOpenModal}
                             disabled={isSubmitted}
                             className={`px-6 py-2 mt-4 sm:mt-0 rounded-lg shadow-md transition duration-300 ${isSubmitted
-                                    ? 'bg-gray-400 cursor-not-allowed'
-                                    : 'bg-yellow-500 text-white hover:bg-yellow-600'
+                                ? 'bg-gray-400 cursor-not-allowed'
+                                : 'bg-yellow-500 text-white hover:bg-yellow-600'
                                 }`}
                         >
                             {isSubmitted ? 'Already Recovered' : 'This is Mine!'}

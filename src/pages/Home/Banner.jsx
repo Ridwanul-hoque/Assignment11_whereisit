@@ -22,7 +22,7 @@ const Banner = () => {
                     {/* Slide 1 */}
                     <div id="slide1" className="carousel-item relative w-full">
                         <img
-                            src='https://i.ibb.co.com/HPfJx4d/top-down-aerial-view-professional-260nw-2506054649.jpg'
+                            src='https://i.ibb.co.com/bbLZF3w/images-5.jpg'
                             className="opacity-30 w-full h-[600px] object-cover"
                         />
                         <div
@@ -32,16 +32,16 @@ const Banner = () => {
                             <motion.h1
                                 animate={{ x: 50 }}
                                 transition={{ duration: 2, delay: 1, ease: easeInOut, repeat: Infinity }}
-                                className="text-5xl font-bold">Latest <motion.span animate={{ color: ['#ecff33', '#33ffe3', '#ffa233'] }} transition={{ duration: 1.5, repeat: Infinity }}>Books</motion.span> For You!</motion.h1>
+                                className="text-5xl font-bold">Lost Your Things!!</motion.h1>
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
-                                Join millions in supporting innovative projects and making dreams a reality.
+                                First ever Website To Help you Get your Things back to you
                             </p>
                             <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
-                                <Link to='/newCampaign'><button> Start Your Campaign</button></Link>
+                                <Link to='/seemore'><button> See More</button></Link>
                             </div>
                         </div>
                         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                            <a href="#slide4" className="btn btn-circle" onClick={handleSlideChange}>
+                            <a href="#slide3" className="btn btn-circle" onClick={handleSlideChange}>
                                 ❮
                             </a>
                             <a href="#slide2" className="btn btn-circle" onClick={handleSlideChange}>
@@ -53,7 +53,7 @@ const Banner = () => {
                     {/* Slide 2 */}
                     <div id="slide2" className="carousel-item relative w-full">
                         <img
-                            src='https://i.ibb.co.com/XJg7r9S/checklist-survey-assessment-quality-control-260nw-2193891539.jpg'
+                            src='https://i.ibb.co.com/gPbSSVc/lost-found-magnifying-glass-search-260nw-1604580745.webp'
                             className="opacity-30 w-full h-[800px] object-cover"
                         />
                         <div
@@ -63,13 +63,13 @@ const Banner = () => {
                             <motion.h1
                                 animate={{ x: 50 }}
                                 transition={{ duration: 2, delay: 1, ease: easeInOut, repeat: Infinity }}
-                                className="text-5xl font-bold">Latest <motion.span animate={{ color: ['#ecff33', '#33ffe3', '#ffa233'] }} transition={{ duration: 1.5, repeat: Infinity }}>Books</motion.span> For You!</motion.h1>
+                                className="text-5xl font-bold">Found Someone else Belongins!!</motion.h1>
 
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
-                                Explore how Crowdcube has transformed ideas into impactful ventures.
+                                Found Someone Else Belonging Put it in the Website to let owner find out
                             </p>
                             <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
-                                <Link to='/allCampaign'><button> View Campaigns </button></Link>
+                                <Link to='/addItems'><button> Add Items </button></Link>
                             </div>
                         </div>
                         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -85,7 +85,7 @@ const Banner = () => {
                     {/* Slide 3 */}
                     <div id="slide3" className="carousel-item relative w-full">
                         <img
-                            src='https://i.ibb.co.com/yYfjTCB/good-job-asian-manager-business-260nw-2423837477.jpg'
+                            src='https://i.ibb.co.com/12s7g4q/the-etiquette-of-finding-and-returning-lost-items.webp'
                             className="opacity-30 w-full h-[800px] object-cover"
                         />
                         <div
@@ -95,50 +95,17 @@ const Banner = () => {
                             <motion.h1
                                 animate={{ x: 50 }}
                                 transition={{ duration: 2, delay: 1, ease: easeInOut, repeat: Infinity }}
-                                className="text-5xl font-bold">Latest <motion.span animate={{ color: ['#ecff33', '#33ffe3', '#ffa233'] }} transition={{ duration: 1.5, repeat: Infinity }}>Books</motion.span> For You!</motion.h1>
+                                className="text-5xl font-bold">Join the Community</motion.h1>
 
                             <p className="text-2xl font-medium animate__animated animate__fadeInUp">
-                                Support projects you believe in and be part of the change.
+                                Together, we can transform the lost into found and create meaningful connections!
                             </p>
                             <div className="bg-orange-400 p-4 rounded-lg text-white animate__animated animate__zoomIn">
-                                <Link to='/allCampaign'><button> Explore Campaigns </button></Link>
+                                <Link to='/register'><button> Join the Community </button></Link>
                             </div>
                         </div>
                         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                             <a href="#slide2" className="btn btn-circle" onClick={handleSlideChange}>
-                                ❮
-                            </a>
-                            <a href="#slide4" className="btn btn-circle" onClick={handleSlideChange}>
-                                ❯
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Slide 4 */}
-                    <div id="slide4" className="carousel-item relative w-full">
-                        <img
-                            src=''
-                            className="opacity-30 w-full h-[800px] object-cover"
-                        />
-                        <div
-                            key={`${animationKey}-4`}
-                            className="absolute inset-0 flex flex-col gap-8 items-center justify-center text-black"
-                        >
-                            <motion.h1
-                                animate={{ x: 50 }}
-                                transition={{ duration: 2, delay: 1, ease: easeInOut, repeat: Infinity }}
-                                className="text-5xl font-bold">Latest <motion.span animate={{ color: ['#ecff33', '#33ffe3', '#ffa233'] }} transition={{ duration: 1.5, repeat: Infinity }}>Books</motion.span> For You!</motion.h1>
-                            
-
-                            <p className="text-2xl font-medium animate__animated animate__fadeInUp">
-                                Contribute to the Drive!
-                            </p>
-                            <div className="bg-cyan-400 p-6 rounded-lg text-white animate__animated animate__zoomIn">
-                                <button> Learn More</button>
-                            </div>
-                        </div>
-                        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                            <a href="#slide3" className="btn btn-circle" onClick={handleSlideChange}>
                                 ❮
                             </a>
                             <a href="#slide1" className="btn btn-circle" onClick={handleSlideChange}>
@@ -146,6 +113,9 @@ const Banner = () => {
                             </a>
                         </div>
                     </div>
+
+                    {/* Slide 4 */}
+                    
                 </div>
             </div>
 

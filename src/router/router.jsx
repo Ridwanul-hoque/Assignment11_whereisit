@@ -11,12 +11,15 @@ import ItemsDetail from "../ItemsDetail/ItemsDetail";
 import AddItems from "../pages/AddItems/AddItems";
 import MyItems from "../pages/Myitems/MyItems";
 import RecoveredItems from "../pages/RecoveredItems/RecoveredItems";
+import PrivateRoute from "./PrivateRoute";
+import Error from "../pages/Error/Error";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/',
@@ -24,24 +27,24 @@ const router = createBrowserRouter([
       },
       {
         path: '/non-recovered/:id',
-        element: <ItemsDetail></ItemsDetail>,
+        element: <PrivateRoute><ItemsDetail></ItemsDetail></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/non-recovered/${params.id}`)
       },
       {
         path: 'addItems',
-        element: <AddItems></AddItems>
+        element: <PrivateRoute><AddItems></AddItems></PrivateRoute>
       },
       {
         path: 'recoverItems',
-        element: <RecoveredItems></RecoveredItems>
+        element: <PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>
       },
       {
         path: 'myItems',
-        element: <MyItems></MyItems>
+        element: <PrivateRoute><MyItems></MyItems></PrivateRoute>
       },
       {
         path: 'seemore',
-        element: <Items></Items>
+        element: <PrivateRoute><Items></Items></PrivateRoute>
       },
       {
         path: 'register',
@@ -52,6 +55,7 @@ const router = createBrowserRouter([
         element: <Login></Login>
       }
     ]
+
   },
 ]);
 
