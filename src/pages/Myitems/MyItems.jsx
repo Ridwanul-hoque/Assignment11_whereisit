@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Helmet } from 'react-helmet-async';
 import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
-
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';  // Added icons for actions
 
 const MyItems = () => {
     const { user } = useAuth();
@@ -20,24 +20,11 @@ const MyItems = () => {
 
     useEffect(() => {
         if (!user) {
-            // navigate('/login');
             return;
         }
 
         console.log('Fetching items for:', user.email);
 
-        // fetch(`http://localhost:5000/non-recovered/full?email=${user.email}`)
-        //     .then((res) => {
-        //         if (!res.ok) {
-        //             throw new Error('Failed to fetch items');
-        //         }
-        //         return res.json();
-        //     })
-        //     .then((data) => setItems(data))
-        //     .catch((err) => {
-        //         console.error(err);
-        //         setError('Failed to load items. Please try again later.');
-        //     });
         fetch(`http://localhost:5000/non-recovered?email=${user.email}`)
             .then((res) => {
                 if (!res.ok) {
@@ -51,6 +38,7 @@ const MyItems = () => {
                 setError('Failed to load items. Please try again later.');
             });
     }, [user]);
+
     const handleDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -125,180 +113,180 @@ const MyItems = () => {
             });
     };
 
-
     if (!user) {
         return <p>Loading...</p>;
     }
 
     return (
-        <div>
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} transition-all`}>
             <Helmet>
                 <title>Whereisit || My Items</title>
             </Helmet>
-            <h1>My Items</h1>
-            {error && <p className="text-red-500">{error}</p>}
-            <table className="table-auto border-collapse w-full">
-                <thead>
-                    <tr>
-                        <th className="border p-2">Thumbnail</th>
-                        <th className="border p-2">Title</th>
-                        <th className="border p-2">Category</th>
-                        <th className="border p-2">Location</th>
-                        <th className="border p-2">Date</th>
-                        <th className="border p-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map((item) => (
-                        <tr key={item._id}>
-                            <td className="border p-2">
-                                <img src={item.thumbnail} alt={item.title} className="w-16 h-16 object-cover" />
-                            </td>
-                            <td className="border p-2">{item.title}</td>
-                            <td className="border p-2">{item.category}</td>
-                            <td className="border p-2">{item.location}</td>
-                            <td className="border p-2">{item.date}</td>
-                            <td className="border p-2">
-                                <button
-                                    className="bg-blue-500 text-white p-1 rounded"
-                                    onClick={() => handleEdit(item)}
-                                >
-                                    Update
-                                </button>
-                                <button
-                                    className="bg-red-500 text-white p-1 rounded ml-2"
-                                    onClick={() => handleDelete(item._id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            {editingItem && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className={`p-6 rounded-lg w-1/2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
-                        <h2 className="text-2xl font-bold mb-4">Edit Item</h2>
-                        <form onSubmit={handleUpdate}>
-                            <div className="mb-4">
-                                <label className="block mb-1">Title</label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    defaultValue={editingItem.title}
-                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block mb-1">Category</label>
-                                <input
-                                    type="text"
-                                    name="category"
-                                    defaultValue={editingItem.category}
-                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block mb-1">Location</label>
-                                <input
-                                    type="text"
-                                    name="location"
-                                    defaultValue={editingItem.location}
-                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <div className='flex gap-12'>
-                                    <div>
-                                        <label className="block mb-1">Date</label>
+            <div className="container mx-auto px-4 py-8">
+                <h1 className="text-3xl font-bold mb-6">My Items</h1>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+                    <table className="table-auto w-full">
+                        <thead className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
+                            <tr>
+                                <th className="border-b px-4 py-2 text-left">Thumbnail</th>
+                                <th className="border-b px-4 py-2 text-left">Title</th>
+                                <th className="border-b px-4 py-2 text-left">Category</th>
+                                <th className="border-b px-4 py-2 text-left">Location</th>
+                                <th className="border-b px-4 py-2 text-left">Date</th>
+                                <th className="border-b px-4 py-2 text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {items.map((item) => (
+                                <tr key={item._id} className="hover:bg-gray-50">
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
+                                        <img src={item.thumbnail} alt={item.title} className="w-16 h-16 object-cover rounded-md" />
+                                    </td>
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>{item.title}</td>
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>{item.category}</td>
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>{item.location}</td>
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>{item.date}</td>
+                                    <td className={`border-b px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
+                                        <button
+                                            className="bg-blue-600 text-white px-3 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            onClick={() => handleEdit(item)}
+                                        >
+                                            <FaEdit className="inline mr-1" /> Update
+                                        </button>
+                                        <button
+                                            className="bg-red-600 text-white px-3 py-2 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 ml-4"
+                                            onClick={() => handleDelete(item._id)}
+                                        >
+                                            <FaTrashAlt className="inline mr-1" /> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {editingItem && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                        <div className={`p-6 rounded-lg w-11/12 md:w-1/2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+                            <h2 className="text-2xl font-bold mb-4">Edit Item</h2>
+                            <form onSubmit={handleUpdate}>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Title</label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        defaultValue={editingItem.title}
+                                        className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Category</label>
+                                    <input
+                                        type="text"
+                                        name="category"
+                                        defaultValue={editingItem.category}
+                                        className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Location</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        defaultValue={editingItem.location}
+                                        className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4 flex gap-4">
+                                    <div className="flex-1">
+                                        <label className="block text-sm font-medium">Date</label>
                                         <DatePicker
                                             selected={selectedDate}
                                             onChange={date => setSelectedDate(date)}
                                             dateFormat="yyyy-MM-dd"
-                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
                                             required
                                         />
                                     </div>
-                                    <div className="mb-4">
-                                        <label className="block mb-1">User Email</label>
+                                    <div className="flex-1">
+                                        <label className="block text-sm font-medium">User Email</label>
                                         <input
                                             type="email"
                                             value={user?.email} // User's email
                                             name="email"
-                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
                                             readOnly
                                         />
                                     </div>
-                                    <div className="mb-4">
-                                        <label className="block mb-1">User Name</label>
+                                    <div className="flex-1">
+                                        <label className="block text-sm font-medium">User Name</label>
                                         <input
                                             type="text"
                                             value={user?.displayName} // User's display name
                                             name="name"
-                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
                                             readOnly
                                         />
                                     </div>
                                 </div>
-                            </div>
-                            <div className="mb-4">
-                                <label className="block mb-1">Post Type</label>
-                                <select
-                                    name="postType"
-                                    defaultValue={editingItem.postType}
-                                    className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                >
-                                    <option value="Lost">Lost</option>
-                                    <option value="Found">Found</option>
-                                </select>
-                            </div>
-                            <div className="mb-4">
-                                <label className="block mb-1">Description</label>
-                                <input
-                                    type="text"
-                                    name="description"
-                                    defaultValue={editingItem.description}
-                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block mb-1">Thumbnail</label>
-                                <input
-                                    type="text"
-                                    name="thumbnail"
-                                    defaultValue={editingItem.thumbnail}
-                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    required
-                                />
-                            </div>
-
-                            <div className="flex justify-end">
-                                <button
-                                    type="button"
-                                    className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
-                                    onClick={() => setEditingItem(null)}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="bg-blue-500 text-white px-4 py-2 rounded"
-                                >
-                                    Save Changes
-                                </button>
-                            </div>
-                        </form>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Post Type</label>
+                                    <select
+                                        name="postType"
+                                        defaultValue={editingItem.postType}
+                                        className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    >
+                                        <option value="Lost">Lost</option>
+                                        <option value="Found">Found</option>
+                                    </select>
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Description</label>
+                                    <input
+                                        type="text"
+                                        name="description"
+                                        defaultValue={editingItem.description}
+                                        className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">Thumbnail</label>
+                                    <input
+                                        type="text"
+                                        name="thumbnail"
+                                        defaultValue={editingItem.thumbnail}
+                                        className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} p-2 rounded-md`}
+                                        required
+                                    />
+                                </div>
+                                <div className="flex justify-end gap-4">
+                                    <button
+                                        type="button"
+                                        className="bg-gray-500 text-white px-4 py-2 rounded-md"
+                                        onClick={() => setEditingItem(null)}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="bg-blue-600 text-white px-4 py-2 rounded-md"
+                                    >
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div >
-            )}
-
-        </div >
+                )}
+            </div>
+        </div>
     );
 };
 
