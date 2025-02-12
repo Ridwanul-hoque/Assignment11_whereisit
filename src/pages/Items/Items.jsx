@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ItemsCard from './ItemsCard';
+import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
 
 const Items = () => {
     const [items, setItems] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); // State for the search term
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     useEffect(() => {
         fetch('http://localhost:5000/non-recovered/allItems')
@@ -34,7 +36,7 @@ const Items = () => {
                     placeholder="Search by title..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className={`w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                 />
             </div>
 

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import AuthContext from '../context/AuthContext/AuthContext';
+import DarkModeContext from '../context/DarkModeContext/DarkModeContext';
 
 const ItemsDetail = () => {
     const items = useLoaderData();
@@ -13,6 +14,7 @@ const ItemsDetail = () => {
     const [recoveredDate, setRecoveredDate] = useState(new Date());
     const [recoveredLocation, setRecoveredLocation] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     const { _id, postType, thumbnail, title, description, category, location, date, name, email } = items;
 
@@ -146,7 +148,7 @@ const ItemsDetail = () => {
                                     value={recoveredLocation}
                                     onChange={(e) => setRecoveredLocation(e.target.value)}
                                     placeholder="Enter location"
-                                    className="w-full p-3 border rounded-lg"
+                                    className={`w-full p-3 border rounded-lg ${darkMode ? 'bg-gray-900 text-white' : 'bg-[#E5E7EB] text-black'}`}
                                     required
                                 />
                             </div>
@@ -159,7 +161,7 @@ const ItemsDetail = () => {
                                 <DatePicker
                                     selected={recoveredDate}
                                     onChange={(date) => setRecoveredDate(date)}
-                                    className="w-full p-3 border rounded-lg"
+                                    className={`w-full p-3 border rounded-lg ${darkMode ? 'bg-gray-900 text-white' : 'bg-[#E5E7EB] text-black'}`}
                                     required
                                 />
                             </div>
@@ -169,7 +171,7 @@ const ItemsDetail = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Recovered Person Info
                                 </label>
-                                <div className="p-3 border rounded-lg bg-gray-100">
+                                <div className={`w-full p-3 border rounded-lg ${darkMode ? 'bg-gray-900 text-white' : 'bg-[#E5E7EB] text-black'}`}>
                                     <p>
                                         <strong>Name:</strong> {user?.displayName || 'Anonymous'}
                                     </p>
