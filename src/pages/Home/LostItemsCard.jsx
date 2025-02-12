@@ -27,17 +27,9 @@ const LostItemsCard = ({ lostitem }) => {
                 </div>
                 <div className="border-t-2 border-dashed mb-4"></div>
                 <div className="card-actions flex items-center justify-between">
-                    <div className="badge badge-outline px-3 py-1 text-sm font-medium capitalize">
-                        {postType}
-                    </div>
-                    <div className="text-sm text-gray-700">
-                        Category: <span className="font-medium">{category}</span>
-                    </div>
-                    <div className="text-sm text-gray-700 font-bold">
-                        Date: {date}
-                    </div>
+                    
                     <div className="flex justify-end">
-                        <Link to={`/non-recovered/${_id}`}><button className="px-4 py-2 bg-[#C57478] text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+                        <Link to={`/non-recovered/${_id}`}><button className="px-4 py-2 bg-[#C57478] text-white rounded-lg shadow-md hover:bg-black transition duration-300">
                             Details
                         </button></Link>
                     </div>
