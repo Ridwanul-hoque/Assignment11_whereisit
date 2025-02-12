@@ -5,7 +5,7 @@ const Allitems = () => {
     const [allitems, setAllItems] = useState([])
 
     useEffect(() => {
-        fetch('https://whereisit-server-side.vercel.app/non-recovered/full')
+        fetch('http://localhost:5000/non-recovered/full')
             .then(res => res.json())
             .then(data => {
                 setAllItems(data)

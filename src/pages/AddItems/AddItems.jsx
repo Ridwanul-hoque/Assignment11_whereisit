@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Fade, Zoom } from 'react-awesome-reveal';
 import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -6,11 +6,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
 
 const AddItems = () => {
     const { user } = useAuth()
     const navigate = useNavigate()
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     const handleAddItems = e => {
 
@@ -31,7 +33,7 @@ const AddItems = () => {
 
 
 
-        fetch('https://whereisit-server-side.vercel.app/non-recovered', {
+        fetch('http://localhost:5000/non-recovered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
