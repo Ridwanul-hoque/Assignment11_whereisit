@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Helmet } from 'react-helmet-async';
+import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
 
 
 const MyItems = () => {
@@ -13,6 +14,7 @@ const MyItems = () => {
     const [error, setError] = useState(null);
     const [editingItem, setEditingItem] = useState(null);
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     const navigate = useNavigate();
 
@@ -176,7 +178,7 @@ const MyItems = () => {
             </table>
             {editingItem && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg w-1/2">
+                    <div className={`p-6 rounded-lg w-1/2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                         <h2 className="text-2xl font-bold mb-4">Edit Item</h2>
                         <form onSubmit={handleUpdate}>
                             <div className="mb-4">
@@ -185,7 +187,7 @@ const MyItems = () => {
                                     type="text"
                                     name="title"
                                     defaultValue={editingItem.title}
-                                    className="input input-bordered w-full"
+                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 />
                             </div>
@@ -195,7 +197,7 @@ const MyItems = () => {
                                     type="text"
                                     name="category"
                                     defaultValue={editingItem.category}
-                                    className="input input-bordered w-full"
+                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 />
                             </div>
@@ -205,7 +207,7 @@ const MyItems = () => {
                                     type="text"
                                     name="location"
                                     defaultValue={editingItem.location}
-                                    className="input input-bordered w-full"
+                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 />
                             </div>
@@ -217,7 +219,7 @@ const MyItems = () => {
                                             selected={selectedDate}
                                             onChange={date => setSelectedDate(date)}
                                             dateFormat="yyyy-MM-dd"
-                                            className="input input-bordered w-full"
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                             required
                                         />
                                     </div>
@@ -227,7 +229,7 @@ const MyItems = () => {
                                             type="email"
                                             value={user?.email} // User's email
                                             name="email"
-                                            className="input input-bordered w-full"
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                             readOnly
                                         />
                                     </div>
@@ -237,7 +239,7 @@ const MyItems = () => {
                                             type="text"
                                             value={user?.displayName} // User's display name
                                             name="name"
-                                            className="input input-bordered w-full"
+                                            className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                             readOnly
                                         />
                                     </div>
@@ -248,7 +250,7 @@ const MyItems = () => {
                                 <select
                                     name="postType"
                                     defaultValue={editingItem.postType}
-                                    className="select select-bordered w-full"
+                                    className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 >
                                     <option value="Lost">Lost</option>
@@ -261,7 +263,7 @@ const MyItems = () => {
                                     type="text"
                                     name="description"
                                     defaultValue={editingItem.description}
-                                    className="input input-bordered w-full"
+                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 />
                             </div>
@@ -271,7 +273,7 @@ const MyItems = () => {
                                     type="text"
                                     name="thumbnail"
                                     defaultValue={editingItem.thumbnail}
-                                    className="input input-bordered w-full"
+                                    className={`input input-bordered w-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     required
                                 />
                             </div>

@@ -75,13 +75,13 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Title</span>
                             </label>
-                            <input type="text" name='title' placeholder="Item Name" className="input input-bordered" required />
+                            <input type="text" name='title' placeholder="Item Name" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="label-text">Category</span>
                             </label>
-                            <input type="text" name='category' placeholder="Item type eg.documents, device" className="input input-bordered" required />
+                            <input type="text" name='category' placeholder="Item type eg.documents, device" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
                     </div>
                 </Fade>
@@ -93,7 +93,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Location</span>
                             </label>
-                            <input type="text" name='location' placeholder="Address" className="input input-bordered" required />
+                            <input type="text" name='location' placeholder="Address" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
 
 
@@ -113,7 +113,7 @@ const AddItems = () => {
                                     onChange={(date) => setSelectedDate(date)}
                                     dateFormat="yyyy-MM-dd"
                                     placeholderText="Select a date"
-                                    className="input input-bordered"
+                                    className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     popperPlacement="bottom-start"
                                     popperClassName="z-50"
                                     portalId="root-portal"
@@ -127,7 +127,7 @@ const AddItems = () => {
                                 </label>
                                 <select
                                     name="postType"
-                                    className="select select-bordered"
+                                    className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
                                     defaultValue="Lost"
                                     required
                                 >
@@ -139,13 +139,13 @@ const AddItems = () => {
                                 <label className="label">
                                     <span className="label-text">User Email</span>
                                 </label>
-                                <input type="email" value={user?.email} name="email" className="input input-bordered" readOnly required />
+                                <input type="email" value={user?.email} name="email" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} readOnly required />
                             </div>
                             <div className="form-control flex-1">
                                 <label className="label">
                                     <span className="label-text">User Name</span>
                                 </label>
-                                <input type="text" value={user?.displayName} name="name" className="input input-bordered" readOnly required />
+                                <input type="text" value={user?.displayName} name="name" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} readOnly required />
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Description</span>
                             </label>
-                            <input type="text" name='description' placeholder="Description of the Item" className="input input-bordered" required />
+                            <input type="text" name='description' placeholder="Description of the Item" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
 
                     </div>
@@ -170,7 +170,7 @@ const AddItems = () => {
                         <label className="label">
                             <span className="label-text">Thumbnail</span>
                         </label>
-                        <input type="text" name='thumbnail' placeholder="Photo url" className="input input-bordered" required />
+                        <input type="text" name='thumbnail' placeholder="Photo url" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
 
                     </div>
 

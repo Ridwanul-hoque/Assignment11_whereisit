@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
 
@@ -6,6 +6,7 @@ const RecoveredItems = () => {
     const { user } = useAuth();
     const [recoveredItems, setRecoveredItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     useEffect(() => {
         if (user?.email) {
@@ -38,25 +39,25 @@ const RecoveredItems = () => {
                 <table className="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr className="bg-gray-200">
-                            <th className="border border-gray-300 px-4 py-2">Recovered Location</th>
+                            <th className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>Recovered Location</th>
 
-                            <th className="border border-gray-300 px-4 py-2">Recovered Date</th>
-                            <th className="border border-gray-300 px-4 py-2">Recovered By</th>
-                            <th className="border border-gray-300 px-4 py-2">Created At</th>
+                            <th className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>Recovered Date</th>
+                            <th className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>Recovered By</th>
+                            <th className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>Created At</th>
                         </tr>
                     </thead>
                     <tbody>
                         {recoveredItems.map((item) => (
                             <tr key={item._id} className="hover:bg-gray-100">
-                                <td className="border border-gray-300 px-4 py-2">{item.recoveredLocation}</td>
+                                <td className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>{item.recoveredLocation}</td>
 
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                                     {new Date(item.recoveredDate).toLocaleString()}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                                     {item.recoveredBy?.name || 'N/A'}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className={`border border-gray-300 px-4 py-2 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                                     {new Date(item.createdAt).toLocaleString()}
                                 </td>
                             </tr>
