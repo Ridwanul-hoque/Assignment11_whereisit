@@ -12,14 +12,14 @@ const MainLayout = () => {
         <div className={darkMode ? 'bg-gray-900 text-white min-h-screen' : 'bg-[#E5E7EB] text-black min-h-screen'}>
             <div className={darkMode ? "bg-[#C57478] text-white" : "bg-[#cea8aa] text-black"}>
                 <div className='max-w-7xl mx-auto'>
-                    <Navbar />
+                    <Navbar></Navbar>
                 </div>
             </div>
             <div className='max-w-7xl mx-auto'>
-                <Outlet />
+                <Outlet></Outlet>
             </div>
             <div className='max-w-7xl mx-auto'>
-                <Footer />
+                <Footer></Footer>
             </div>
         </div>
     );

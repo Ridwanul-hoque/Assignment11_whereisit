@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
+import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
 
 const RecoveredItems = () => {
     const { user } = useAuth();
