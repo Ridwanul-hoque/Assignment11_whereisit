@@ -7,18 +7,20 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
 import DarkModeContext from '../../context/DarkModeContext/DarkModeContext';
+import { ClipLoader } from 'react-spinners';
 
 const AddItems = () => {
-    const { user } = useAuth()
-    const navigate = useNavigate()
+    const { user } = useAuth();
+    const navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const { darkMode } = useContext(DarkModeContext);
+    const [loading, setLoading] = useState(false); // New loading state
 
-    const handleAddItems = e => {
-
+    const handleAddItems = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
+        setLoading(true); // Start loading
 
+        const formData = new FormData(e.target);
         const newItem = {
             postType: formData.get('postType'),
             thumbnail: formData.get('thumbnail'),
@@ -31,151 +33,124 @@ const AddItems = () => {
             email: formData.get('email'),
         };
 
+        try {
+            const res = await fetch('http://localhost:5000/non-recovered', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(newItem),
+            });
 
+            const data = await res.json();
+            if (data.insertedId) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Item added',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            }
+        } catch (error) {
+            console.error('Error adding item:', error);
+        } finally {
+            setLoading(false); // Stop loading
+        }
+    };
 
-        fetch('http://localhost:5000/non-recovered', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newItem)
-
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Item added",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate('/')
-                }
-            })
-
-
-    }
     return (
-        <div className='bg-[#C57478] p-4 rounded-lg mb-6'>
+        <div className='bg-[#C57478] p-4 rounded-lg mb-6 relative'>
             <Helmet>
                 <title>Whereisit || Add Items</title>
             </Helmet>
+            
+            {/* Show spinner while loading */}
+            {loading && (
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+                    <ClipLoader color="#ffffff" size={80} />
+                </div>
+            )}
+
             <Zoom>
                 <h2 className='text-2xl font-extrabold flex justify-center'>Add Items</h2>
             </Zoom>
 
             <form onSubmit={handleAddItems} className="card-body">
-
-                {/* form first row */}
+                {/* form fields */}
                 <Fade cascade>
                     <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
-                            <label className="label">
-                                <span className="label-text">Title</span>
-                            </label>
+                            <label className="label"><span className="label-text">Title</span></label>
                             <input type="text" name='title' placeholder="Item Name" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
                         <div className="form-control flex-1">
-                            <label className="label">
-                                <span className="label-text">Category</span>
-                            </label>
+                            <label className="label"><span className="label-text">Category</span></label>
                             <input type="text" name='category' placeholder="Item type eg.documents, device" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
                     </div>
                 </Fade>
-                {/* form second row */}
+
                 <Fade cascade>
                     <div className='flex flex-col lg:flex-row gap-5'>
-
                         <div className="form-control flex-1">
-                            <label className="label">
-                                <span className="label-text">Location</span>
-                            </label>
+                            <label className="label"><span className="label-text">Location</span></label>
                             <input type="text" name='location' placeholder="Address" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
-
-
                     </div>
                 </Fade>
-                {/* form third row */}
-                <Fade cascade>
 
+                <Fade cascade>
                     <div className="form-control flex-1">
                         <div className='flex flex-col lg:flex-row gap-5'>
                             <div>
-                                <label className="label">
-                                    <span className="label-text">Date</span>
-                                </label>
+                                <label className="label"><span className="label-text">Date</span></label>
                                 <DatePicker
                                     selected={selectedDate}
                                     onChange={(date) => setSelectedDate(date)}
                                     dateFormat="yyyy-MM-dd"
-                                    placeholderText="Select a date"
                                     className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    popperPlacement="bottom-start"
-                                    popperClassName="z-50"
-                                    portalId="root-portal"
                                     required
                                 />
                             </div>
 
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Post Type</span>
-                                </label>
-                                <select
-                                    name="postType"
-                                    className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
-                                    defaultValue="Lost"
-                                    required
-                                >
+                                <label className="label"><span className="label-text">Post Type</span></label>
+                                <select name="postType" className={`select select-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} defaultValue="Lost" required>
                                     <option value="Lost">Lost</option>
                                     <option value="Found">Found</option>
                                 </select>
                             </div>
                             <div className="form-control flex-1">
-                                <label className="label">
-                                    <span className="label-text">User Email</span>
-                                </label>
+                                <label className="label"><span className="label-text">User Email</span></label>
                                 <input type="email" value={user?.email} name="email" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} readOnly required />
                             </div>
                             <div className="form-control flex-1">
-                                <label className="label">
-                                    <span className="label-text">User Name</span>
-                                </label>
+                                <label className="label"><span className="label-text">User Name</span></label>
                                 <input type="text" value={user?.displayName} name="name" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} readOnly required />
                             </div>
                         </div>
                     </div>
+                </Fade>
 
-
+                <Fade cascade>
                     <div className='flex flex-col lg:flex-row gap-5'>
-
                         <div className="form-control flex-1">
-                            <label className="label">
-                                <span className="label-text">Description</span>
-                            </label>
+                            <label className="label"><span className="label-text">Description</span></label>
                             <input type="text" name='description' placeholder="Description of the Item" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
                         </div>
-
                     </div>
                 </Fade>
 
-
                 <Fade cascade>
-
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Thumbnail</span>
-                        </label>
+                        <label className="label"><span className="label-text">Thumbnail</span></label>
                         <input type="text" name='thumbnail' placeholder="Photo url" className={`input input-bordered ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`} required />
-
                     </div>
 
                     <div className="form-control mt-6">
-                        <button type='submit' className=" bg-black text-white p-4 rounded-lg">Add Items</button>
+                        <button type='submit' className="bg-black text-white p-4 rounded-lg" disabled={loading}>
+                            {loading ? 'Adding...' : 'Add Items'}
+                        </button>
                     </div>
                 </Fade>
             </form>
